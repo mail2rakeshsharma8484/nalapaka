@@ -1,0 +1,130 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-serif: var(--font-fraunces), ui-serif, Georgia, serif;
+
+  /* warm paper neutrals */
+  --color-cream-50: #fdfbf7;
+  --color-cream-100: #faf6ef;
+  --color-cream-200: #f2ebdd;
+  --color-cream-300: #e6d9c2;
+  --color-cream-400: #d5c3a3;
+
+  /* warm ink */
+  --color-bark-400: #8a7d6f;
+  --color-bark-500: #6b5d4f;
+  --color-bark-600: #575046;
+  --color-bark-700: #4a4038;
+  --color-bark-800: #3a332c;
+  --color-bark-900: #2c2620;
+
+  /* the one confident accent: deep kitchen green */
+  --color-sage-50: #f3f6ef;
+  --color-sage-100: #e5eddd;
+  --color-sage-200: #cbdbbd;
+  --color-sage-300: #a9c193;
+  --color-sage-400: #84a26c;
+  --color-sage-500: #648552;
+  --color-sage-600: #506a42;
+  --color-sage-700: #415636;
+  --color-sage-800: #37472e;
+  --color-sage-900: #2f3c28;
+
+  /* warm secondary accent for warnings / highlights */
+  --color-ember-50: #fdf4ec;
+  --color-ember-100: #fae6d3;
+  --color-ember-200: #f3cda4;
+  --color-ember-500: #c2622b;
+  --color-ember-600: #a9511f;
+  --color-ember-700: #87401a;
+
+  --color-honey-400: #d9a441;
+  --color-honey-500: #c78f2c;
+
+  /* soft layered shadows */
+  --shadow-card: 0 1px 2px rgb(44 38 32 / 0.05), 0 4px 16px -4px rgb(44 38 32 / 0.08);
+  --shadow-card-hover: 0 2px 4px rgb(44 38 32 / 0.06), 0 12px 28px -8px rgb(44 38 32 / 0.14);
+  --shadow-pop: 0 8px 32px -8px rgb(44 38 32 / 0.25);
+
+  --animate-toast-in: toast-in 0.25s cubic-bezier(0.21, 1.02, 0.73, 1) both;
+  --animate-sheet-in: sheet-in 0.28s cubic-bezier(0.32, 0.72, 0, 1) both;
+  --animate-fade-in: fade-in 0.2s ease both;
+  --animate-shimmer: shimmer 1.6s linear infinite;
+
+  @keyframes toast-in {
+    from { opacity: 0; transform: translateY(12px) scale(0.97); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  @keyframes sheet-in {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes shimmer {
+    from { background-position: 200% 0; }
+    to { background-position: -200% 0; }
+  }
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-cream-50);
+  color: var(--color-bark-900);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-sage-200);
+  color: var(--color-sage-900);
+}
+
+.font-display {
+  font-family: var(--font-serif);
+  letter-spacing: -0.01em;
+}
+
+/* subtle paper texture for hero surfaces */
+.texture-dots {
+  background-image: radial-gradient(rgb(253 251 247 / 0.09) 1px, transparent 1.5px);
+  background-size: 16px 16px;
+}
+
+/* skeleton shimmer */
+.skeleton {
+  background: linear-gradient(
+    100deg,
+    var(--color-cream-200) 40%,
+    var(--color-cream-100) 50%,
+    var(--color-cream-200) 60%
+  );
+  background-size: 200% 100%;
+  animation: var(--animate-shimmer);
+}
+
+/* consistent, visible focus */
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-sage-600);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  html { scroll-behavior: auto; }
+}
